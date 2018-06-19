@@ -68,10 +68,10 @@ $cokes50 = array_fill(0, 15, new Coke50());
 
 
 $ref->putCan($cokes33);
-echo 'Add 33ml x 30               : ' . json_encode($ref->getStockCount() === 30) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
+echo 'Add 33cl x 30               : ' . json_encode($ref->getStockCount() === 30) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
 echo 'Full check                  : ' . json_encode($ref->isFull() === false) . PHP_EOL;
 $ref->putCan($cokes50);
-echo 'Add 50ml x 15               : ' . json_encode($ref->getStockCount() === 45) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
+echo 'Add 50cl x 15               : ' . json_encode($ref->getStockCount() === 45) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
 echo 'Full check                  : ' . json_encode($ref->isFull() === true) . PHP_EOL;
 
 echo '-------------------------------------' . PHP_EOL;
@@ -83,19 +83,19 @@ $cokes50 = array_fill(0, 15, new Coke50());
 
 
 $ref->putCan($cokes33);
-echo 'Add 33ml x 29               : ' . json_encode($ref->getStockCount() === 29) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
+echo 'Add 33cl x 29               : ' . json_encode($ref->getStockCount() === 29) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
 echo 'Full check                  : ' . json_encode($ref->isFull() === false) . PHP_EOL;
 $ref->putCan($cokes50);
-echo 'Add 50ml x 15               : ' . json_encode($ref->getStockCount() === 44) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
+echo 'Add 50cl x 15               : ' . json_encode($ref->getStockCount() === 44) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
 echo 'Full check                  : ' . json_encode($ref->isFull() === false) . PHP_EOL;
 
 
 try {
     $ref->putCan(new Coke50());
 } catch (\Exception $e) {
-    echo 'Couldnt add 50ml (no space) : ' . json_encode($e->getMessage() === 'There is no space available!') . PHP_EOL;
+    echo 'Couldnt add 50cl (no space) : ' . json_encode($e->getMessage() === 'There is no space available!') . PHP_EOL;
 }
 
 $ref->putCan(new Coke33());
-echo 'Add 33ml x 1                : ' . json_encode($ref->getStockCount() === 45) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
+echo 'Add 33cl x 1                : ' . json_encode($ref->getStockCount() === 45) . ' (' . $ref->getStockCount() . ')' . PHP_EOL;
 echo 'Full check                  : ' . json_encode($ref->isFull() === true) . PHP_EOL;
