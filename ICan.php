@@ -12,4 +12,6 @@ interface ICan
     public function getEnergy();
 
     public function getSugar();
+
+    public function getWeight();
 }

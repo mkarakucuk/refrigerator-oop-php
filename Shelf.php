@@ -15,11 +15,13 @@ class Shelf
 
     private $stock;
     private $isFull;
+    private $stock_count;
 
     public function __construct()
     {
         $this->stock = array();
         $this->isFull = false;
+        $this->stock_count = 0;
     }
 
     public function getStockCount()
@@ -29,12 +31,12 @@ class Shelf
 
     public function getEmptySpace()
     {
-        return self::CAPACITY - $this->getStockCount();
+        return self::CAPACITY - $this->stock_count;
     }
 
     public function isEmpty()
     {
-        return empty($this->stock);
+        return $this->stock_count === 0;
     }
 
     public function isFull()
@@ -52,8 +54,13 @@ class Shelf
             return false;
         }
 
+        if ($this->getEmptySpace() < $can->getWeight()) {
+            return false;
+        }
+
         $this->stock[] = $can;
-        $this->isFull = ($this->getStockCount() === self::CAPACITY);
+        $this->stock_count += $can->getWeight();
+        $this->isFull = ($this->stock_count === self::CAPACITY);
 
         return true;
     }
@@ -66,6 +73,9 @@ class Shelf
 
         $this->isFull = false;
 
-        return array_pop($this->stock);
+        $can = array_pop($this->stock);
+        $this->stock_count -= $can->getWeight();
+
+        return $can;
     }
 }

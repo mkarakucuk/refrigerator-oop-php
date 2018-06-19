@@ -5,7 +5,8 @@
 namespace OOP_Example;
 
 require_once 'Shelf.php';
-require_once 'Coke.php';
+require_once 'Coke33.php';
+require_once 'Coke50.php';
 
 /**
  *
@@ -65,7 +66,7 @@ class Refrigerator
      * @param  int    $count [description]
      * @return [type]        [description]
      */
-    public function getCan(int $count)
+    public function getCan($count)
     {
         // if (!$this->isDoorOpened()) {
         //     throw new Exception("Please open the door!", 403);
@@ -94,7 +95,10 @@ class Refrigerator
     public function getStockCount()
     {
         $result = 0;
-        foreach ($this->_shelf as $shelf) {
+        foreach ($this->_shelf as $key => $shelf) {
+            if (defined('DEBUG') && DEBUG === true) {
+                echo 'Shelf-' . $key . ' : ' . $shelf->getStockCount() . PHP_EOL;
+            }
             $result += $shelf->getStockCount();
         }
 
@@ -128,10 +132,16 @@ class Refrigerator
     {
         $success = false;
 
+        if (defined('DEBUG') && DEBUG === true) {
+            $this->getStockCount();
+        }
+
         foreach ($this->_shelf as $shelf) {
             if (!$shelf->isFull()) {
                 $success = $shelf->put($can);
-                break;
+                if ($success) {
+                    break;
+                }
             }
         }
 

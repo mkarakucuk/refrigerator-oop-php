@@ -9,15 +9,17 @@ require_once 'ICan.php';
 /**
  *
  */
-class Coke implements ICan
+class Coke50 implements ICan
 {
     private $energy;
     private $sugar;
+    private $weight;
 
     public function __construct()
     {
         $this->energy = 45;
         $this->sugar = 11.2;
+        $this->weight = 2;
     }
 
     /**
@@ -34,5 +36,13 @@ class Coke implements ICan
     public function getSugar()
     {
         return $this->sugar;
+    }
+
+    /**
+     * @return float
+     */
+    public function getWeight()
+    {
+        return $this->weight;
     }
 }
